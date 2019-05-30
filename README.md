@@ -1,3 +1,20 @@
+# How to Build DLLs
+Compile FullSerializer.dll first. Steps: 
+1. Remove the AoT/Editor folder from the source path. (copy it elsewhere)
+2. Remove the compiled dlls to start clean
+3. Run script ./compile.sh
+4. It should produce the dll, xml, and mdb files we need. 
+
+Compile FullSerializerEditor.dll second. Steps: 
+1. Add the AoT/Editor folder back to the src path. 
+2. Run the script ./compile-editor.sh
+
+When you're done copy the FullSerializer DLLs to the Unity Project's Asset/Plugin/FullSerializer folder and replace the ones there. If all is well then it should work. 
+
+# Custom Fixes
+5/30/2019 - Fix for serializing flags so we don't end up with a comma-separated list of them. 
+See this github issue for more details: https://github.com/jacobdufault/fullserializer/issues/146
+
 # Full Serializer
 
 Full Serializer is an easy to use and robust JSON serializer that *just works*. It'll serialize pretty much anything you can throw at it and work on every major Unity platform, including consoles. Full Serializer doesn't use exceptions, so you can activate more stripping options on iOS.
