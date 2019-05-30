@@ -37,7 +37,11 @@ namespace FullSerializer.Internal {
                 bool first = true;
                 foreach (var value in Enum.GetValues(storageType)) {
                     long integralValue = Convert.ToInt64(value);
-                    bool isSet = (instanceValue & integralValue) != 0;
+
+                    //https://github.com/jacobdufault/fullserializer/issues/146
+                    //view this github issue for how to fix enumerated flags. 
+                    bool isSet = instanceValue == integralValue || (integralValue != 0 && (instanceValue & integralValue) == integralValue);                   
+                    // bool isSet = (instanceValue & integralValue) != 0;
 
                     if (isSet) {
                         if (first == false) result.Append(",");
